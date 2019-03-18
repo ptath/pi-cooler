@@ -18,14 +18,14 @@ read -n 1 -p " Install script as systemd service and reboot? (Y/n): " choice
 case $version_choice in
   y|Y )
     echo " Yes"
-      [ -e /lib/systemd/system/cooler.service ] && echo " Cooler service exists (/lib/systemd/system/cooler.service)? Exiting..." && exit
-      wget -q -N -O /tmp/cooler.service https://github.com/ptath/pi-cooler/raw/master/cooler.service
-      sudo mv /tmp/cooler.service /lib/systemd/system/cooler.service
-      sudo chmod 644 /lib/systemd/system/cooler.service
-      sudo systemctl daemon-reload
-      sudo systemctl enable cooler.service
-      sudo reboot now
-      ;;
+    [ -e /lib/systemd/system/cooler.service ] && echo " Cooler service exists (/lib/systemd/system/cooler.service)? Exiting..." && exit
+    wget -q -N -O /tmp/cooler.service https://github.com/ptath/pi-cooler/raw/master/cooler.service
+    sudo mv /tmp/cooler.service /lib/systemd/system/cooler.service
+    sudo chmod 644 /lib/systemd/system/cooler.service
+    sudo systemctl daemon-reload
+    sudo systemctl enable cooler.service
+    sudo reboot now
+    ;;
   n|N|* )
     echo " No" && exit
     ;;
