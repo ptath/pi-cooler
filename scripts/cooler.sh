@@ -49,7 +49,7 @@ trap shutdown SIGINT
 while [ 1 ]
 do
   getTemp
-  if [ $CPU_TEMP > $TARGET_TEMP ]; then
+  if [ "$CPU_TEMP" -gt "$TARGET_TEMP" ]; then
     # Uncomment line below to debug
     # echo "CPU temperature is too high: $CPU_TEMP, cooling..."
     setCoolerOn
