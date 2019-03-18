@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Version 0.1
+# Version 0.2
 # By ptath (https://ptath.ru)
 # Raspberry Pi cooler installation script
 
@@ -14,8 +14,7 @@ chmod +x ~/scripts/cooler.sh
 
 # Installing cooler.sh as systemd service
 read -n 1 -p " Install script as systemd service and reboot? (Y/n): " choice
-[ -z "$choice" ] && choice="y"
-case $version_choice in
+case $choice in
   y|Y )
     echo " Yes"
     [ -e /lib/systemd/system/cooler.service ] && echo " Cooler service exists (/lib/systemd/system/cooler.service)? Exiting..." && exit
