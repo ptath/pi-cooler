@@ -21,12 +21,12 @@ fi
 
 # Setting up GPIO pin
 if [ ! -e /sys/class/gpio/gpio"$GPIO_N" ]; then
-  sudo echo "$GPIO_N" > /sys/class/gpio/export
-  sudo echo "out" > /sys/class/gpio/gpio"$GPIO_N"/direction
+  echo "$GPIO_N" > /sys/class/gpio/export
+  echo "out" > /sys/class/gpio/gpio"$GPIO_N"/direction
   # Uncomment line below to debug
   # echo "Pin $GPIO_N is set"
 else
-  sudo echo "out" > /sys/class/gpio/gpio"$GPIO_N"/direction
+  echo "out" > /sys/class/gpio/gpio"$GPIO_N"/direction
   # Uncomment line below to debug
   # echo "Pin $GPIO_N already set"
 fi
