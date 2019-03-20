@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Version 0.1
+# Version 0.3
 # By ptath (https://ptath.ru)
 # Raspberry Pi cooler script
 # Edit values below to fit your needs
@@ -50,13 +50,25 @@ while [ 1 ]
 do
   getTemp
   if [ "$CPU_TEMP" -gt "$TARGET_TEMP" ]; then
-    # Uncomment line below to debug
-    # echo "CPU temperature is too high: $CPU_TEMP, cooling..."
-    setCoolerOn
+    if [ "$isCooling" == "yes" ]; then
+      # Uncomment line below to debug
+      # echo "CPU temperature is too high: $CPU_TEMP, keep cooling..."
+    else
+      # Uncomment line below to debug
+      echo "CPU temperature is too high: $CPU_TEMP, start cooling..."
+      setCoolerOn
+      isCooling="yes"
+    fi
   else
-    # Uncomment line below to debug
-    # echo "CPU temperature is fine: $CPU_TEMP, cooler stopped."
-    setCoolerOff
+    if [ "$isCooling" == "yes" ]; then
+      echo "CPU temperature is fine: $CPU_TEMP, cooler stopped."
+      setCoolerOff
+      isCooling="no"
+    else
+      # Uncomment line below to debug
+      # echo "CPU temperature is fine: $CPU_TEMP, no need to cool."
+    fi
   fi
+  # Next update after POLL_INT seconds
   sleep "$POLL_INT"
 done
